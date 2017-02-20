@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PROGRAM='example'
+
+gcc -o ${PROGRAM} ${PROGRAM}.c
+

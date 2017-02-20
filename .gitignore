@@ -1,0 +1,4 @@
+.vagrant
+example
+*.log
+*.swp

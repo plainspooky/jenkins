@@ -1,0 +1,50 @@
+#!/bin/sh
+
+PROGRAM='./example'
+
+test_return(){
+    ${1} ${2}
+    if [ ${?} -eq ${3} ]; then
+        echo "\t[   OK   ]"
+    else
+        echo "\t[ Falhou ]"
+    fi
+}
+
+test_args(){
+    if [ ${1} -eq ${2} ]; then
+        echo "\t[   OK   ]"
+    else
+        echo "\t[ Falhou ]"
+    fi
+}
+
+repeat(){
+    I=${1}
+    while [ ${I} -gt 0 ]; do
+        echo -n "${2} "
+        I=$(( I-1 ))
+    done
+    echo
+}
+
+echo "1. - Código de Saída"
+
+echo "1.1. - Sem parâmetros"
+echo -n " --> " ; test_return ${PROGRAM} " " 2
+
+echo "1.2. - Com parâmetros"
+echo -n " --> " ; test_return ${PROGRAM} "abc" 0
+
+echo "2. - Número de parâmetros (1 a 10)"
+
+ARG=1
+while [ ${ARG} -lt 11 ]; do
+   echo "2.${ARG}. - Teste com ${ARG} argumentos(s)."
+    CMD=$( ${PROGRAM} $( repeat ${ARG} "abc" ) )
+    OUT=$( echo ${CMD} | sed 's/[^0-9]*//g' )
+    echo " --> '${CMD}'"
+    test_args ${ARG} ${OUT}
+    ARG=$(( ARG+1 ))
+done
+

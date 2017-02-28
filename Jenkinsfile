@@ -4,8 +4,9 @@ pipeline {
     stages {
         stage('Check') {
             steps {
-                git branch: 'testing', url: 'https://github.com/plainspooky/jenkins/'
+                git branch: 'jenkinsfile', url: 'https://github.com/plainspooky/jenkins/'
             }
+        }
         stage('Build') { 
             steps { 
                 sh 'cd git-example ; sh ./build' 

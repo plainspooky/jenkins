@@ -1,5 +1,6 @@
 #!/bin/sh
 
+ERROR=0
 PROGRAM='./example'
 
 test_return(){
@@ -8,6 +9,7 @@ test_return(){
         echo "\t[   OK   ]"
     else
         echo "\t[ Falhou ]"
+        ERROR=2
     fi
 }
 
@@ -16,6 +18,7 @@ test_args(){
         echo "\t[   OK   ]"
     else
         echo "\t[ Falhou ]"
+        ERROR=2
     fi
 }
 
@@ -48,3 +51,4 @@ while [ ${ARG} -lt 11 ]; do
     ARG=$(( ARG+1 ))
 done
 
+exit ${ERROR}

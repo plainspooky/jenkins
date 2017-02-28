@@ -14,8 +14,7 @@ pipeline {
         }
         stage('Test'){
             steps {
-                sh 'sh ./test'
-                junit 'reports/**/*.xml' 
+                sh 'cd git-example ; sh ./test'
             }
         }
         stage('Deploy') {
